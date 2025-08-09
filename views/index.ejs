@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Real-Time User Locations & Routing</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
+  />
+</head>
+
+<body>
+  <div id="container">
+    <div id="sidebar">
+      <h3>Enter Username</h3>
+      <input id="usernameInput" type="text" placeholder="Your name" autocomplete="off" />
+      <button id="joinBtn">Join</button>
+
+      <h3>Users</h3>
+      <ul id="users"></ul>
+    </div>
+<div id="placeholder" class="placeholder-message">
+  <p>Enter your username and click <strong>Join</strong> to load the map and see users.</p>
+</div>
+    <div id="map"></div>
+  </div>
+
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
+
+
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -89,7 +89,6 @@ function fallbackStaticSetup() {
 
   map.setView(myLatLng, 13);
 
-  
 }
 
 
@@ -143,15 +142,25 @@ function updateMarkersAndPaths() {
 }
 
 function drawFixedPath(id, waypoints) {
+  
   if (fixedPaths[id]) {
     map.removeControl(fixedPaths[id]);
     delete fixedPaths[id];
   }
 
-  if (waypoints.length < 2) return;
 
-  const latLngs = waypoints.map((p) => L.latLng(p.latitude, p.longitude));
+  const uniqueWaypoints = waypoints.filter((point, index, arr) => {
+    if (index === 0) return true; 
+    const prev = arr[index - 1];
+    return point.latitude !== prev.latitude || point.longitude !== prev.longitude;
+  });
 
+ 
+  if (uniqueWaypoints.length < 2) return;
+
+  const latLngs = uniqueWaypoints.map(p => L.latLng(p.latitude, p.longitude));
+
+ 
   fixedPaths[id] = L.Routing.control({
     waypoints: latLngs,
     routeWhileDragging: false,
@@ -161,7 +170,7 @@ function drawFixedPath(id, waypoints) {
     fitSelectedRoutes: false,
     createMarker: () => null,
     lineOptions: {
-      styles: [{ color: "green", opacity: 0.7, weight: 4 }],
+      styles: [{ color: "green", opacity: 0.7, weight: 4 }]
     },
   }).addTo(map);
 }
